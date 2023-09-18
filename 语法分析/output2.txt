@@ -1,0 +1,6 @@
+21373328
+a=1,b=2,condition is a==1&&b==2
+a=1,b=2,condition is a==1||b!=3
+0
+a<b
+c<=d
