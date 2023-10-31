@@ -6,6 +6,7 @@ import Parser.NodeMap;
 import java.io.IOException;
 
 public class BlockItemNode {
+    // BlockItem → Decl | Stmt
     private DeclNode declNode;
     private StmtNode stmtNode;
 
@@ -22,5 +23,14 @@ public class BlockItemNode {
             stmtNode.export(nodeMap);
         }
 //        FileOperate.writeFile("output.txt", nodeMap.getNode(NodeType.BlockItem) + "\n");
+    }
+
+    public DeclNode getDeclNode() {
+        return declNode;
+    }
+
+    public StmtNode getStmtNode() {
+//        System.out.println("blockItem");
+        return stmtNode;
     }
 }

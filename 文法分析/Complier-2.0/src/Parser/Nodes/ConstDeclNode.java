@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class ConstDeclNode {
-
+    // ConstDecl → 'const' BType ConstDef { ',' ConstDef } ';'
     private Token constToken;
     private BTypeNode bTypeNode;
     private List<ConstDefNode> constDefNodes;
@@ -33,5 +33,25 @@ public class ConstDeclNode {
         }
         FileOperate.writeFile("output.txt", semicn.toString());
         FileOperate.writeFile("output.txt", nodeMap.getNode(NodeType.ConstDecl) + "\n");
+    }
+
+    public Token getConstToken() {
+        return constToken;
+    }
+
+    public BTypeNode getbTypeNode() {
+        return bTypeNode;
+    }
+
+    public List<ConstDefNode> getConstDefNodes() {
+        return constDefNodes;
+    }
+
+    public List<Token> getCommas() {
+        return commas;
+    }
+
+    public Token getSemicn() {
+        return semicn;
     }
 }

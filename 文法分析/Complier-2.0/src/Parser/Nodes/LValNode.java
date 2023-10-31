@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class LValNode {
+    // LVal → Ident {'[' Exp ']'}
     private Token ident;
     private List<Token> leftBrackets;
     private List<ExpNode> expNodes;
@@ -28,5 +29,21 @@ public class LValNode {
             FileOperate.writeFile("output.txt", rightBrackets.get(i).toString());
         }
         FileOperate.writeFile("output.txt", nodeMap.getNode(NodeType.LVal) + "\n");
+    }
+
+    public Token getIdent() {
+        return ident;
+    }
+
+    public List<Token> getLeftBrackets() {
+        return leftBrackets;
+    }
+
+    public List<ExpNode> getExpNodes() {
+        return expNodes;
+    }
+
+    public List<Token> getRightBrackets() {
+        return rightBrackets;
     }
 }

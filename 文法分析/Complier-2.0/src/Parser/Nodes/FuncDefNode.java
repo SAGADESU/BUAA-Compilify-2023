@@ -7,7 +7,7 @@ import Parser.NodeMap;
 import java.io.IOException;
 
 public class FuncDefNode {
-
+    // FuncDef → FuncType Ident '(' [FuncFParams] ')' Block
     private FuncTypeNode funcTypeNode;
     private Token ident;
 
@@ -34,6 +34,30 @@ public class FuncDefNode {
         }
         FileOperate.writeFile("output.txt", rightParent.toString());
         blockNode.export(nodeMap);
-        FileOperate.writeFile("output.txt", nodeMap.getNode(NodeType.FuncDef)+"\n");
+        FileOperate.writeFile("output.txt", nodeMap.getNode(NodeType.FuncDef) + "\n");
+    }
+
+    public FuncTypeNode getFuncTypeNode() {
+        return funcTypeNode;
+    }
+
+    public Token getIdent() {
+        return ident;
+    }
+
+    public Token getLeftParent() {
+        return leftParent;
+    }
+
+    public FuncFParamsNode getFuncParamsNode() {
+        return funcParamsNode;
+    }
+
+    public Token getRightParent() {
+        return rightParent;
+    }
+
+    public BlockNode getBlockNode() {
+        return blockNode;
     }
 }

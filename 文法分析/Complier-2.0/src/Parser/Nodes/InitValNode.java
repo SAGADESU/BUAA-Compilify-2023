@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class InitValNode {
+    // InitVal → Exp | '{' [ InitVal { ',' InitVal } ] '}'
     private ExpNode expNode;
     private Token leftBrace;
     private List<InitValNode> initValNodes;
@@ -38,5 +39,25 @@ public class InitValNode {
             }
         }
         FileOperate.writeFile("output.txt", nodeMap.getNode(NodeType.InitVal) + "\n");
+    }
+
+    public ExpNode getExpNode() {
+        return expNode;
+    }
+
+    public Token getLeftBrace() {
+        return leftBrace;
+    }
+
+    public List<InitValNode> getInitValNodes() {
+        return initValNodes;
+    }
+
+    public List<Token> getCommas() {
+        return commas;
+    }
+
+    public Token getRightBrace() {
+        return rightBrace;
     }
 }

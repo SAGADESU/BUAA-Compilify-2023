@@ -4,6 +4,7 @@ import Parser.Parser;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import Error.*;
 
 public class Compiler {
     private static List<Token> tokens = new ArrayList<>();
@@ -17,8 +18,10 @@ public class Compiler {
 //        }
         Parser parser = new Parser(tokens);
         parser.runParser();
-        parser.exportParser();
+//        parser.exportParser();
 //        System.out.println(tokens.get(2).getType());
 //        System.out.println("test");
+        ErrorHandler.getInstance().CompUnitErrorHandler(parser.getCompUnitNode());
+        ErrorHandler.getInstance().exportError();
     }
 }

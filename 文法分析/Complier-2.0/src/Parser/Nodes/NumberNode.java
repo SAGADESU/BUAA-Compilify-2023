@@ -7,6 +7,7 @@ import Parser.NodeMap;
 import java.io.IOException;
 
 public class NumberNode {
+    // Number → IntConst
     Token token;
 
     public NumberNode(Token token) {

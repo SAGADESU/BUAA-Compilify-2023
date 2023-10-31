@@ -7,7 +7,7 @@ import Parser.NodeMap;
 import java.io.IOException;
 
 public class UnaryExpNode {
-
+    // UnaryExp → PrimaryExp | Ident '(' [FuncRParams] ')'
     // Type 1
     private PrimaryExpNode primaryExpNode;
     // Type 2
@@ -53,5 +53,33 @@ public class UnaryExpNode {
             unaryExpNode.export(nodeMap);
         }
         FileOperate.writeFile("output.txt", nodeMap.getNode(NodeType.UnaryExp) + "\n");
+    }
+
+    public PrimaryExpNode getPrimaryExpNode() {
+        return primaryExpNode;
+    }
+
+    public Token getIdent() {
+        return ident;
+    }
+
+    public Token getLeftParent() {
+        return leftParent;
+    }
+
+    public FuncRParamsNode getFuncRParamsNode() {
+        return funcRParamsNode;
+    }
+
+    public Token getRightParent() {
+        return rightParent;
+    }
+
+    public UnaryOpNode getUnaryOpNode() {
+        return unaryOpNode;
+    }
+
+    public UnaryExpNode getUnaryExpNode() {
+        return unaryExpNode;
     }
 }

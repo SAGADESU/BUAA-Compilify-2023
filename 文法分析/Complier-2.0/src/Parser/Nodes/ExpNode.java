@@ -6,6 +6,7 @@ import Parser.NodeMap;
 import java.io.IOException;
 
 public class ExpNode {
+    // Exp → AddExp
     private AddExpNode addExpNode;
     public ExpNode(AddExpNode addExpNode)
     {
@@ -14,5 +15,9 @@ public class ExpNode {
     public void export(NodeMap nodeMap) throws IOException {
         addExpNode.export(nodeMap);
         FileOperate.writeFile("output.txt",nodeMap.getNode(NodeType.Exp)+"\n");
+    }
+
+    public AddExpNode getAddExpNode() {
+        return addExpNode;
     }
 }

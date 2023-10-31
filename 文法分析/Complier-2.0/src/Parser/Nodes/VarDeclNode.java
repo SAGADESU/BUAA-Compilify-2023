@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class VarDeclNode {
+    // FuncRParams → Exp { ',' Exp }
     private BTypeNode bTypeNode;
     private List<VarDefNode> varDefNodes;
     private List<Token> commas;
@@ -29,5 +30,21 @@ public class VarDeclNode {
         FileOperate.writeFile("output.txt",semicn.toString());
         FileOperate.writeFile("output.txt",nodeMap.getNode(NodeType.VarDecl)+"\n");
 
+    }
+
+    public BTypeNode getbTypeNode() {
+        return bTypeNode;
+    }
+
+    public List<VarDefNode> getVarDefNodes() {
+        return varDefNodes;
+    }
+
+    public List<Token> getCommas() {
+        return commas;
+    }
+
+    public Token getSemicn() {
+        return semicn;
     }
 }

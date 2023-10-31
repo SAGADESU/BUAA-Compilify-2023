@@ -7,7 +7,7 @@ import Parser.NodeMap;
 import java.io.IOException;
 
 public class BTypeNode {
-
+    // BType → 'int'
     private Token token;
 
     public BTypeNode(Token token) {
@@ -16,5 +16,9 @@ public class BTypeNode {
 
     public void export(NodeMap nodeMap) throws IOException {
         FileOperate.writeFile("output.txt", token.toString());
+    }
+
+    public Token getToken() {
+        return token;
     }
 }

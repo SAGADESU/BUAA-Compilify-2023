@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class LAndExpNode {
+    // LAndExp → EqExp | LAndExp '&&' EqExp
     private List<EqExpNode> eqExpNodes;
     private List<Token> andTK;
 
@@ -24,5 +25,13 @@ public class LAndExpNode {
                 FileOperate.writeFile("output.txt", andTK.get(i).toString());
             }
         }
+    }
+
+    public List<EqExpNode> getEqExpNodes() {
+        return eqExpNodes;
+    }
+
+    public List<Token> getAndTK() {
+        return andTK;
     }
 }

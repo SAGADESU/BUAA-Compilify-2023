@@ -28,4 +28,17 @@ public class CompUnitNode {
         mainFuncDefNode.export(nodeMap);
         FileOperate.writeFile("output.txt",nodeMap.getNode(NodeType.CompUnit)+"\n");
     }
+
+    public List<DeclNode> getDeclNodes() {
+        return declNodes;
+    }
+
+    public List<FuncDefNode> getFuncDefNodes() {
+        System.out.println("funcDef");
+        return funcDefNodes;
+    }
+
+    public MainFuncDefNode getMainFuncDefNode() {
+        return mainFuncDefNode;
+    }
 }

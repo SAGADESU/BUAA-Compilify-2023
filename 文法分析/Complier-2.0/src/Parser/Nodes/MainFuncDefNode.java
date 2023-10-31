@@ -7,6 +7,7 @@ import Parser.NodeMap;
 import java.io.IOException;
 
 public class MainFuncDefNode {
+    // MainFuncDef → 'int' 'main' '(' ')' Block
     private Token intTK;
     private Token mainTK;
     private Token leftParent;
@@ -19,6 +20,26 @@ public class MainFuncDefNode {
         this.leftParent = leftParent;
         this.rightParent = rightParent;
         this.blockNode = blockNode;
+    }
+
+    public Token getIntTK() {
+        return intTK;
+    }
+
+    public Token getMainTK() {
+        return mainTK;
+    }
+
+    public Token getLeftParent() {
+        return leftParent;
+    }
+
+    public Token getRightParent() {
+        return rightParent;
+    }
+
+    public BlockNode getBlockNode() {
+        return blockNode;
     }
 
     public void export(NodeMap nodeMap) throws IOException {

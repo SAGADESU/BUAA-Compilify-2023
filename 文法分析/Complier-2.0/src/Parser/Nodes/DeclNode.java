@@ -6,6 +6,7 @@ import Parser.NodeMap;
 import java.io.IOException;
 
 public class DeclNode {
+    // Decl → ConstDecl | VarDecl
     private ConstDeclNode constDeclNode;
     private VarDeclNode varDeclNode;
 
@@ -21,5 +22,13 @@ public class DeclNode {
             varDeclNode.export(nodeMap);
         }
 //        FileOperate.writeFile("output.txt", nodeMap.getNode(NodeType.Decl) + "\n");
+    }
+
+    public ConstDeclNode getConstDeclNode() {
+        return constDeclNode;
+    }
+
+    public VarDeclNode getVarDeclNode() {
+        return varDeclNode;
     }
 }

@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class ConstInitValNode {
+    // ConstInitVal → ConstExp | '{' [ ConstInitVal { ',' ConstInitVal } ] '}'
     private ConstExpNode constExpNode;
     private Token leftBrace;
     private List<ConstInitValNode> constInitValNodes;
@@ -39,5 +40,25 @@ public class ConstInitValNode {
 
         }
         FileOperate.writeFile("output.txt", nodeMap.getNode(NodeType.ConstInitVal) + "\n");
+    }
+
+    public ConstExpNode getConstExpNode() {
+        return constExpNode;
+    }
+
+    public Token getLeftBrace() {
+        return leftBrace;
+    }
+
+    public List<ConstInitValNode> getConstInitValNodes() {
+        return constInitValNodes;
+    }
+
+    public List<Token> getCommas() {
+        return commas;
+    }
+
+    public Token getRightBrace() {
+        return rightBrace;
     }
 }

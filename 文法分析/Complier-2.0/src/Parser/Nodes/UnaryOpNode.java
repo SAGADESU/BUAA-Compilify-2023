@@ -7,6 +7,7 @@ import Parser.NodeMap;
 import java.io.IOException;
 
 public class UnaryOpNode {
+    // UnaryOp → '+' | '−' | '!'
     Token token;
 
     public UnaryOpNode(Token token) {

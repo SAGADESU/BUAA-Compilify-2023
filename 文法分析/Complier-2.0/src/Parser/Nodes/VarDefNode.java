@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class VarDefNode {
+    // MulExp → UnaryExp | MulExp ('*' | '/' | '%') UnaryExp
     Token ident;
     private List<Token> leftBrackets;
     private List<ConstExpNode> constExpNodes;
@@ -22,6 +23,30 @@ public class VarDefNode {
         this.rightBrackets = rightBrackets;
         this.equal = equal;
         this.initValNode = initValNode;
+    }
+
+    public Token getIdent() {
+        return ident;
+    }
+
+    public List<Token> getLeftBrackets() {
+        return leftBrackets;
+    }
+
+    public List<ConstExpNode> getConstExpNodes() {
+        return constExpNodes;
+    }
+
+    public List<Token> getRightBrackets() {
+        return rightBrackets;
+    }
+
+    public Token getEqual() {
+        return equal;
+    }
+
+    public InitValNode getInitValNode() {
+        return initValNode;
     }
 
     public void export(NodeMap nodeMap) throws IOException {

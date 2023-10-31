@@ -7,6 +7,7 @@ import Parser.NodeMap;
 import java.io.IOException;
 
 public class PrimaryExpNode {
+    // PrimaryExp → '(' Exp ')' | LVal | Number
     // Type 1
     private Token leftParent;
     private ExpNode expNode;
@@ -31,6 +32,26 @@ public class PrimaryExpNode {
     public PrimaryExpNode(NumberNode numberNode) {
         // Type 3
         this.numberNode = numberNode;
+    }
+
+    public Token getLeftParent() {
+        return leftParent;
+    }
+
+    public ExpNode getExpNode() {
+        return expNode;
+    }
+
+    public Token getRightParent() {
+        return rightParent;
+    }
+
+    public LValNode getlValNode() {
+        return lValNode;
+    }
+
+    public NumberNode getNumberNode() {
+        return numberNode;
     }
 
     public void export(NodeMap nodeMap) throws IOException {

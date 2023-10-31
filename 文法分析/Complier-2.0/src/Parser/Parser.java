@@ -3,6 +3,7 @@ package Parser;
 import Lexer.LexType;
 import Lexer.Token;
 import Parser.Nodes.*;
+import Error.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,6 +15,10 @@ public class Parser {
 
     private CompUnitNode compUnitNode;
     private int index = 0;
+
+    public CompUnitNode getCompUnitNode() {
+        return compUnitNode;
+    }
 
     public Parser(List<Token> tokens) {
         this.nodeMap = new NodeMap();
@@ -28,11 +33,25 @@ public class Parser {
         compUnitNode.export(nodeMap);
     }
 
+    public boolean isExp() {
+        return tokens.get(index).getType() == LexType.IDENFR || tokens.get(index).getType() == LexType.PLUS || tokens.get(index).getType() == LexType.MINU || tokens.get(index).getType() == LexType.NOT || tokens.get(index).getType() == LexType.LPARENT || tokens.get(index).getType() == LexType.INTCON;
+    }
+
     private Token match(LexType lexType) {
         if (tokens.get(index).getType() == lexType) {
             return tokens.get(index++);
+        } else if (lexType == LexType.SEMICN) { // 缺少分号的情况，对应错误类型i
+            ErrorHandler.getInstance().addError(new ErrorUnit(tokens.get(index - 1).getLineNumber(), ErrorType.i));
+            return new Token(LexType.SEMICN, ";", tokens.get(index - 1).getLineNumber());
+        } else if (lexType == LexType.RPARENT) { // 缺少右小括号的情况，对应错误类型j
+            ErrorHandler.getInstance().addError(new ErrorUnit(tokens.get(index - 1).getLineNumber(), ErrorType.j));
+            return new Token(LexType.RPARENT, ")", tokens.get(index - 1).getLineNumber());
+        } else if (lexType == LexType.RBRACK) { // 缺少右中括号的情况，对应错误类型k
+            ErrorHandler.getInstance().addError(new ErrorUnit(tokens.get(index - 1).getLineNumber(), ErrorType.k));
+            return new Token(LexType.RBRACK, "]", tokens.get(index - 1).getLineNumber());
         } else {
-            throw new RuntimeException("Syntax error: " + tokens.get(index).toString() + " at line " + tokens.get(index).getLineNumber()+" expecting "+lexType);
+            System.out.println(tokens.get(index - 1).getType());
+            throw new RuntimeException("Syntax error: " + tokens.get(index).toString() + " at line " + tokens.get(index).getLineNumber() + " expecting " + lexType);
         }
     }
 
@@ -183,7 +202,8 @@ public class Parser {
         Token ident = match(LexType.IDENFR);
         Token leftParent = match(LexType.LPARENT);
         FuncFParamsNode funcFParamsNode = null;
-        if (tokens.get(index).getType() != LexType.RPARENT) {
+        // 这里可能会遇到缺少右括号的错误，因此改用INTTK判断
+        if (tokens.get(index).getType() == LexType.INTTK) {
             funcFParamsNode = FuncFParams();
         }
         Token rightParent = match(LexType.RPARENT);
@@ -308,7 +328,7 @@ public class Parser {
             // 'return' [Exp] ';'
             Token returnTK = match(LexType.RETURNTK);
             ExpNode expNode = null;
-            if (tokens.get(index).getType() != LexType.SEMICN) {
+            if (isExp()) {
                 expNode = Exp();
             }
             Token semicn = match(LexType.SEMICN);
@@ -365,7 +385,7 @@ public class Parser {
             } else {
                 // [Exp] ';'
                 ExpNode expNode = null;
-                if (tokens.get(index).getType() != LexType.SEMICN) {
+                if (isExp()) {
                     expNode = Exp();
                 }
                 Token semicnTK = match(LexType.SEMICN);
@@ -427,7 +447,7 @@ public class Parser {
             Token ident = match(LexType.IDENFR);
             Token leftParent = match(LexType.LPARENT);
             FuncRParamsNode funcRParamsNode = null;
-            if (tokens.get(index).getType() != LexType.RPARENT) {
+            if (isExp()) {
                 funcRParamsNode = FuncRParams();
             }
             Token rightParent = match(LexType.RPARENT);

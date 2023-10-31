@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class FuncFParamNode {
+    // FuncFParam → BType Ident ['[' ']' { '[' ConstExp ']' }]
     private BTypeNode bTypeNode;
     private Token ident;
     private List<Token> leftBrackets;
@@ -35,5 +36,25 @@ public class FuncFParamNode {
             }
         }
         FileOperate.writeFile("output.txt", nodeMap.getNode(NodeType.FuncFParam) + "\n");
+    }
+
+    public BTypeNode getbTypeNode() {
+        return bTypeNode;
+    }
+
+    public Token getIdent() {
+        return ident;
+    }
+
+    public List<Token> getLeftBrackets() {
+        return leftBrackets;
+    }
+
+    public List<Token> getRightBrackets() {
+        return rightBrackets;
+    }
+
+    public List<ConstExpNode> getConstExpNodes() {
+        return constExpNodes;
     }
 }

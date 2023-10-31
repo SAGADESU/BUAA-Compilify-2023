@@ -26,4 +26,12 @@ public class AddExpNode {
             }
         }
     }
+
+    public List<MulExpNode> getMulExpNodes() {
+        return mulExpNodes;
+    }
+
+    public List<Token> getExpressions() {
+        return expressions;
+    }
 }

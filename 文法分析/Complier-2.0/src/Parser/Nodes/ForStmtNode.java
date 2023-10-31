@@ -7,7 +7,7 @@ import Parser.NodeMap;
 import java.io.IOException;
 
 public class ForStmtNode {
-
+    // ForStmt → LVal '=' Exp
     private LValNode lValNode;
     private Token equal;
     private ExpNode expNode;
@@ -23,5 +23,17 @@ public class ForStmtNode {
         FileOperate.writeFile("output.txt", equal.toString());
         expNode.export(nodeMap);
         FileOperate.writeFile("output.txt", nodeMap.getNode(NodeType.ForStmt) + "\n");
+    }
+
+    public LValNode getlValNode() {
+        return lValNode;
+    }
+
+    public Token getEqual() {
+        return equal;
+    }
+
+    public ExpNode getExpNode() {
+        return expNode;
     }
 }

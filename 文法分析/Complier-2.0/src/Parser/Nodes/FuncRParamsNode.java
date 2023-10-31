@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class FuncRParamsNode {
+    // FuncRParams → Exp { ',' Exp }
     private List<ExpNode> expNodes;
     private List<Token> commas;
 
@@ -23,5 +24,13 @@ public class FuncRParamsNode {
             expNodes.get(i).export(nodeMap);
         }
         FileOperate.writeFile("output.txt", nodeMap.getNode(NodeType.FuncRParams) + "\n");
+    }
+
+    public List<ExpNode> getExpNodes() {
+        return expNodes;
+    }
+
+    public List<Token> getCommas() {
+        return commas;
     }
 }

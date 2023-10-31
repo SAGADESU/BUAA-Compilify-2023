@@ -8,6 +8,15 @@ import java.io.IOException;
 import java.util.List;
 
 public class StmtNode {
+    // Stmt → LVal '=' Exp ';'
+    // | [Exp] ';'
+    // | Block
+    // | 'if' '(' Cond ')' Stmt [ 'else' Stmt ]
+    // | 'for' '(' [ForStmt] ';' [Cond] ';' [ForStmt] ')' Stmt
+    // | 'break' ';' | 'continue' ';'
+    // | 'return' [Exp] ';'
+    // | LVal '=' 'getint''('')'';'
+    // | 'printf''('FormatString{','Exp}')'';'
     // Type 1 & 2
     private StmtType stmtType;
     private LValNode lValNode;
@@ -138,6 +147,104 @@ public class StmtNode {
         this.expNodes = expNodes;
         this.rightParent = rightParent;
         this.semicn = semicn;
+    }
+
+    public StmtType getStmtType() {
+        return stmtType;
+    }
+
+    public LValNode getlValNode() {
+        return lValNode;
+    }
+
+    public Token getEqual() {
+        return equal;
+    }
+
+    public ExpNode getExpNode() {
+        return expNode;
+    }
+
+    public Token getSemicn() {
+        return semicn;
+    }
+
+    public BlockNode getBlockNode() {
+        return blockNode;
+    }
+
+    public Token getIfTK() {
+        return ifTK;
+    }
+
+    public Token getLeftParent() {
+        return leftParent;
+    }
+
+    public CondNode getCondNode() {
+//        System.out.print(forTK.getValue()+"@ @"+ifTK.getValue());
+//        System.out.println(condNode.toString());
+        return condNode;
+    }
+
+    public Token getRightParent() {
+        return rightParent;
+    }
+
+    public List<StmtNode> getStmtNodes() {
+        return stmtNodes;
+    }
+
+    public Token getElseTK() {
+        return elseTK;
+    }
+
+    public Token getForTK() {
+        return forTK;
+    }
+
+    public ForStmtNode getForStmtNode1() {
+        return forStmtNode1;
+    }
+
+    public ForStmtNode getForStmtNode2() {
+        return forStmtNode2;
+    }
+
+    public List<Token> getSemicns() {
+        return semicns;
+    }
+
+    public StmtNode getStmtNode() {
+        return stmtNode;
+    }
+
+    public Token getBreakOrContinue() {
+        return breakOrContinue;
+    }
+
+    public Token getReturnTK() {
+        return returnTK;
+    }
+
+    public Token getGetIntTK() {
+        return getIntTK;
+    }
+
+    public Token getPrintfTK() {
+        return printfTK;
+    }
+
+    public Token getFormatString() {
+        return formatString;
+    }
+
+    public List<Token> getCommas() {
+        return commas;
+    }
+
+    public List<ExpNode> getExpNodes() {
+        return expNodes;
     }
 
     public void export(NodeMap nodeMap) throws IOException {

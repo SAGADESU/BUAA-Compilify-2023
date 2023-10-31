@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class MulExpNode {
+    // MulExp → UnaryExp | MulExp ('*' | '/' | '%') UnaryExp
     private List<UnaryExpNode> unaryExpNodes;
     private List<Token> expressions;
 
@@ -24,5 +25,13 @@ public class MulExpNode {
                 FileOperate.writeFile("output.txt", expressions.get(i).toString());
             }
         }
+    }
+
+    public List<UnaryExpNode> getUnaryExpNodes() {
+        return unaryExpNodes;
+    }
+
+    public List<Token> getExpressions() {
+        return expressions;
     }
 }

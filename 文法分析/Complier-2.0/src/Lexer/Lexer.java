@@ -4,6 +4,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import Error.*;
+
 public class Lexer {
 
     private StringOperate sOp; //string operate instance
@@ -59,7 +61,7 @@ public class Lexer {
         FileOperate.createFile(filePath);
         FileWriter fileWriter = new FileWriter(filePath);
         while (getSymbol() != -1) {
-            Token tokenUnit = new Token(tokenType,token,lineNum);
+            Token tokenUnit = new Token(tokenType, token, lineNum);
             tokens.add(tokenUnit);
 //            String buf = tokenType + " " + token + '\n';
 //            fileWriter.write(buf);
@@ -215,6 +217,19 @@ public class Lexer {
                 token += c;
                 while (cursor < fileContent.length()) {
                     c = fileContent.charAt(cursor++);
+                    if (!sOp.isQuo(c)) {
+                        if (c == 32 || c == 33 || c >= 40 && c <= 126) {
+                            if (c == 92 && fileContent.charAt(cursor) != 'n') {
+                                ErrorHandler.getInstance().addError(new ErrorUnit(lineNum, ErrorType.a));
+                            }
+                        }else if(c == 37){
+                            if(fileContent.charAt(cursor)!='d'){
+                                ErrorHandler.getInstance().addError(new ErrorUnit(lineNum, ErrorType.a));
+                            }
+                        }else {
+                            ErrorHandler.getInstance().addError(new ErrorUnit(lineNum, ErrorType.a));
+                        }
+                    }
                     token += c;
                     if (sOp.isQuo(c)) {
                         break;

@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class ConstDefNode {
-
+    // ConstDef → Ident { '[' ConstExp ']' } '=' ConstInitVal
     private Token ident;
     private List<Token> leftBrackets;
     private List<ConstExpNode> constExpNodes;
@@ -36,5 +36,29 @@ public class ConstDefNode {
         FileOperate.writeFile("output.txt", equal.toString());
         constInitValNode.export(nodeMap);
         FileOperate.writeFile("output.txt", nodeMap.getNode(NodeType.ConstDef) + "\n");
+    }
+
+    public Token getIdent() {
+        return ident;
+    }
+
+    public List<Token> getLeftBrackets() {
+        return leftBrackets;
+    }
+
+    public List<ConstExpNode> getConstExpNodes() {
+        return constExpNodes;
+    }
+
+    public List<Token> getRightBrackets() {
+        return rightBrackets;
+    }
+
+    public Token getEqual() {
+        return equal;
+    }
+
+    public ConstInitValNode getConstInitValNode() {
+        return constInitValNode;
     }
 }

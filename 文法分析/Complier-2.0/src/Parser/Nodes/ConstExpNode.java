@@ -6,7 +6,7 @@ import Parser.NodeMap;
 import java.io.IOException;
 
 public class ConstExpNode {
-
+    // ConstExp → AddExp
     private AddExpNode addExpNode;
 
     public ConstExpNode(AddExpNode addExpNode) {
@@ -16,5 +16,9 @@ public class ConstExpNode {
     public void export(NodeMap nodeMap) throws IOException {
         addExpNode.export(nodeMap);
         FileOperate.writeFile("output.txt", nodeMap.getNode(NodeType.ConstExp) + "\n");
+    }
+
+    public AddExpNode getAddExpNode() {
+        return addExpNode;
     }
 }

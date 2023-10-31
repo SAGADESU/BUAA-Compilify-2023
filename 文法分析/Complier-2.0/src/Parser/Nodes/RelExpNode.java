@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class RelExpNode {
+    // RelExp → AddExp | RelExp ('<' | '>' | '<=' | '>=') AddExp
     private List<AddExpNode> addExpNodes;
     private List<Token> expressions;
 
@@ -24,5 +25,13 @@ public class RelExpNode {
                 FileOperate.writeFile("output.txt", expressions.get(i).toString());
             }
         }
+    }
+
+    public List<AddExpNode> getAddExpNodes() {
+        return addExpNodes;
+    }
+
+    public List<Token> getExpressions() {
+        return expressions;
     }
 }
